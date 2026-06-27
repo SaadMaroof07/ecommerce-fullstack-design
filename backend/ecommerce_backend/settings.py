@@ -147,7 +147,15 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3001',
     'https://ecommerce-fullstack-design.vercel.app',
 ]
+
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+
+# CORS ke sath CSRF ko bhi allow karein trusted origins mein
+CSRF_TRUSTED_ORIGINS = [
+    'https://ecommerce-fullstack-design-sandy.vercel.app',
+    'https://ecommerce-fullstack-design-dp5e.onrender.com',
+]
 
 
 # Email Configuration

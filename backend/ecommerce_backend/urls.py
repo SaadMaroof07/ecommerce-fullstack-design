@@ -13,16 +13,21 @@ urlpatterns = [
     path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
-
+from django.core.management import call_command
 from django.contrib.auth import get_user_model
 from django.db.utils import IntegrityError
 
-User = get_user_model()
-
+# Web server start hote hi migrations khud chalengi
 try:
-   
+    print("Running database migrations...")
+    call_command('migrate', interactive=False)
+except Exception as e:
+    print(f"Migration error: {e}")
+
+# Aapka purana superuser wala code iske niche rahega:
+User = get_user_model()
+try:
     User.objects.create_superuser('admin', 'saadmaroof07@gmail.com', 'admin1234')
     print("Superuser created successfully via urls.py!")
 except IntegrityError:
-    
     pass
