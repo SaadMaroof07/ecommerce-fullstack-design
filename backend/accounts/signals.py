@@ -7,9 +7,7 @@ from django.conf import settings
 
 @receiver(post_save, sender=User)
 def send_welcome_email(sender, instance, created, **kwargs):
-    """
-    Jab bhi naya user register ho, welcome email bhejo automatically.
-    """
+ 
     if created:
         try:
             send_mail(
@@ -30,7 +28,7 @@ Ecommerce Store Team
                 ''',
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[instance.email],
-                fail_silently=True,  # email fail ho to app crash na ho
+                fail_silently=True, 
             )
         except Exception as e:
             print(f'Email sending failed: {e}')
